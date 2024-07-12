@@ -1,0 +1,360 @@
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q1 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#include <iostream>
+
+
+using namespace std;
+
+#include <cstring>
+
+
+class Handle{
+    private:
+    int size;
+    int num_handles;
+    
+    public:
+    
+    int get_size(){
+        return(size);
+    }
+    int get_num_handles(){
+       return(num_handles); 
+    }
+    
+    void set_size(int n){
+        size = n;
+    }
+    
+    void set_num_hanles(int m){
+        num_handles = m;
+    }
+};
+
+class Crockery{
+  
+  private:
+  string material;
+  bool microwaveable;
+  int size;
+  
+  public:
+  virtual char SolidsLiquids()=0; 
+  
+  
+  
+  virtual void set_plate(string shape, bool printed, string material, bool microwaveable, int size){}
+  
+  virtual void set_kettle(int lid_size,int handle_size, int num_handle, string material, bool microwaveable, int size){}
+  
+  virtual void display(){
+      cout<< "Made of: "<<material<<endl;
+      if(microwaveable == true){
+          cout<<"Microwaveable"<<endl;
+      }
+      else{
+          cout<<"Not microwaveable"<<endl;
+      }
+      cout<<"Size is: "<<size<<" inches"<<endl;
+  }
+  
+  void set_values(string material, bool microwaveable,int size){
+      this->material = material;
+      this->microwaveable = microwaveable;
+      this->size = size;
+  }
+  
+  virtual ~Crockery(){
+      cout<<"~Crockery"<<endl;
+  }
+    
+    
+};
+
+class Plate: public Crockery{
+  
+  private:
+  string shape;
+  bool printed;
+  
+  public: 
+  
+  void set_plate(string shape, bool printed, string material, bool microwaveable, int size){
+      Crockery::set_values(material,microwaveable,size);
+      this->shape= shape ;
+      this->printed = printed;
+      
+  }
+  
+  char SolidsLiquids(){
+      return('S');
+  }
+  
+  void display(){
+      Crockery::display();
+      cout<<"Shape: "<<shape<<endl;
+      if(printed == true){
+          cout<<"Plate has a design printed on it"<<endl;
+      }
+      else{
+          cout<<"Plate has not a design printed on it"<<endl;
+      }
+  }
+  
+  ~Plate(){
+      cout<<"~Plate"<<endl;
+  }
+    
+};
+
+
+class Kettle: public Crockery{
+    
+    private:
+    int lid_size;
+    Handle kettle_handle;
+    
+    public:
+    void set_kettle(int lid_size,int handle_size, int num_handle, string material, bool microwaveable, int size){
+        Crockery::set_values(material,microwaveable,size);
+        this->lid_size = lid_size;
+        kettle_handle.set_size(handle_size);
+        kettle_handle.set_num_hanles(num_handle);
+        
+    }
+    
+    char SolidsLiquids(){
+      return('L');
+    }
+    
+    void display(){
+        Crockery::display();
+        cout<<"Lid size: "<<lid_size<<" inches"<<endl;
+        cout<<"Handle size: "<<kettle_handle.get_size()<<" inches"<<endl;
+        cout<<"Number of handles: "<<kettle_handle.get_num_handles()<<endl;
+    }
+    
+    ~Kettle(){
+      cout<<"~Kettle"<<endl;
+  }
+    
+    
+};
+
+
+
+
+
+
+int main(){
+    char croc;
+    cin>>croc;
+    Crockery* cr;
+    
+    
+    if((croc == 'p') || (croc == 'P')){
+        string a;
+        cin >> a;
+        int b;
+        cin>>b;
+        bool c;
+        if(b==0){
+            c = false;
+        }
+        else{
+            c = true;
+        }
+        int d;
+        cin >> d;
+        string e;
+        cin>> e;
+        int f;
+        cin>>f;
+        bool g;
+        if(f==0){
+            g = false;
+        }
+        else{
+            g = true;
+        }
+        
+        cr = new Plate();
+        cr -> set_plate(e,g,a,c,d);
+    }
+    else if((croc == 'k') || (croc == 'K')){ 
+        string a;
+        cin>>a;
+        int b;
+        cin>>b;
+        bool c;
+        if(b==0){
+            c = false;
+        }
+        else{
+            c = true;
+        }
+        int d;
+        cin >> d;
+
+        int lid;
+        cin>>lid;
+
+        int hand;
+        cin>>hand;
+        
+        int num;
+        cin >> num;
+
+
+
+        cr = new Kettle();
+        cr -> set_kettle(lid,hand,num,a,c,d);
+        
+    }
+    
+    cr->display();
+    char a = cr->SolidsLiquids();
+    if(a == 'L'){
+        cout << "Used to hold liquids!" << endl;
+    }
+    else if (a == 'S'){
+        cout << "Used to hold solid items!" << endl;
+    }
+    
+    
+    
+    delete cr;
+    cr = nullptr;
+    
+}
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q2 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+// 1-- Create a class Node, which has one variable for storing data and a pointer which points to the next node
+
+class node
+{
+    public:
+        int data;
+        node *next;
+        
+    node(int x) {
+        data = x;
+        next = NULL;
+    }
+
+};
+
+
+
+
+
+// 2 -- Create a class Queue ; which has two public pointers for front and rear nodes
+//     and it also has two public functions void Enqueue(int x) and int Dequeue()
+//      also add a function print_queue() which prints all the elements in the queue
+
+class Queue{
+  
+  public:
+  node* front;
+  node* rear;
+  
+  Queue(){
+      front = NULL;
+      rear = NULL;
+  }
+  
+    void Enqueue(int x) {
+        node* new_node = new node(x);
+        if (rear == NULL) {
+            front = new_node;
+            rear = new_node;
+        } else {
+            rear->next = new_node;
+            rear = new_node;
+        }
+    }
+  
+    void Dequeue() {
+        if (front == NULL){
+        } 
+        else {
+        int data = front->data;
+        node* temp = front;
+        front = front->next;
+        delete temp;
+        if (front == NULL) {
+            rear = NULL;
+        }
+
+        }
+    }
+    
+    void print_queue() {
+        node* x = front;
+        while (x != NULL) {
+            cout << x->data << " ";
+            x = x->next;
+        }
+        cout << endl;
+    }
+    
+};
+
+
+
+
+
+
+
+
+int main() {
+    
+    Queue* queue = new Queue; // 
+    
+    int n,value; // n is the number of values to be enqueued 
+    
+    cin >> n;
+    for(int i=0; i<n; i++)
+    {
+        cin >> value; // reading the value
+        queue->Enqueue(value);
+    }
+    
+    queue->print_queue(); // prints the queue after enqueuing the data
+    
+    cin >> n;
+    for(int i=0;i<n;i++)
+    {
+        queue->Dequeue();
+    }
+    
+    queue->print_queue(); // prints the queue after enqueuing the data
+    
+    return 0;
+}

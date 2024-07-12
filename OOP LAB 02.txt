@@ -1,0 +1,328 @@
+Q1
+
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+int main() 
+{
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    char small;
+    cin >> small;
+    char capital;
+    capital = small -32;
+    cout<<capital;
+    
+    return 0;
+}
+
+
+
+
+
+Q2
+
+
+
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+
+    int steel_grade( double hardness, double carbon_content, double tensile_strength){
+     if( hardness > 50 && carbon_content < 0.7 && tensile_strength > 5600){
+         return 10;}
+     else if ( hardness > 50 && carbon_content < 0.7){
+        return 9;
+    }
+     else if (carbon_content < 0.7 && tensile_strength > 5600){
+        return 8;
+    }
+     else if ( hardness > 50 && tensile_strength > 5600){
+         return 7;
+     }
+     else if  ( hardness > 50 || carbon_content < 0.7 || tensile_strength > 5600 ){
+         return 6;
+     }
+     else{
+         return 5;
+     }
+    }
+    
+    int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    double hardness;
+    double carbon_content;
+    double tensile_strength;
+    cin >> hardness;
+    cin >> carbon_content;
+    cin >> tensile_strength;
+    int grade  = steel_grade(hardness,carbon_content,tensile_strength);
+    cout << grade;
+    return 0;
+
+
+
+
+Q3
+
+
+
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+
+void series( int term0, int term1, int n){
+    int term2 = term0 + term1;
+    if ( n == 0){
+        cout << term0;
+    }
+    else if ( n==1){
+        cout << term0 <<", " << term1;
+    }
+    else{
+        cout << term0 <<", " << term1 ;
+        for (int i =0 ; i <= (n-2); i++) {
+        cout << ", " << term2 ;
+        term0 = term1;
+        term1 = term2;
+        term2 =term0 + term1;
+        
+
+        
+        }
+    }
+}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    int term0;
+    int term1;
+    int n ;
+    cin >> term0;
+    cin >> term1;
+    cin >> n;
+    series(term0,term1,n);
+    return 0 ; 
+}
+
+
+
+
+Q4
+
+
+#include<iostream>
+using namespace std;
+int countHoles(int num){
+    int sum = 0;
+    int mod = 0;
+    while(int( num != 0 ))
+    {
+        mod = num % 10;
+        num= num / 10;
+        if ((mod == 1) || ( mod == 2) || (mod == 3) || (mod == 5) || (mod == 7)){
+            sum = sum + 0;}
+        else if ((mod == 0) || (mod == 4) || (mod == 6) || ( mod == 9)){
+            sum = sum +1;}
+        
+        else if ( mod == 8){
+            sum = sum + 2;}}
+            
+              
+        
+        
+    return sum;}
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    int num;
+    cin>>num;
+    cout<<countHoles(num)<<" holes";
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+Q5
+
+#include <iostream>
+
+using namespace std;
+void race ( int prime_up , int prime_down, int tron_up, int tron_down){
+    int sum_p = 0;
+    int sum_f = 0;
+    int i = 0;
+    if (prime_up >= 1000){
+     cout << "Jump 1"<<endl;
+     cout << "Frog Prime has cleared the well!"<<endl;
+     cout << "Frogatron is at "<< tron_up - tron_down << endl;
+     cout << "***** END OF RACE *****"<<endl;
+     cout << "Frog Prime wins in 1 jumps!" ; 
+    }
+    else if (tron_up >= 1000){
+     cout << "Jump 1"<<endl;
+     cout << "Frog Prime is at "<< prime_up - prime_down << " meters."<<endl;
+     cout << "Frogatron has cleared the well!"<<endl;
+     cout << "***** END OF RACE *****"<<endl;
+     cout << "Frogatron wins in 1 jumps!" ; 
+    }
+    else{
+    while (sum_p <1000 && sum_f<1000) {
+    i = i +1;
+    sum_p = sum_p + prime_up - prime_down;
+    sum_f = sum_f + tron_up - tron_down;
+
+    if (sum_p >= 1000 && sum_f >= 1000){
+            cout << "Jump " << i << endl;
+            cout << "Frog Prime has cleared the well!"<<endl;
+            cout << "Frogatron has cleared the well!"<<endl;
+            cout<<"***** END OF RACE *****"<<endl;
+            cout << "TIE in "<<i<<" jumps!";}   
+    else if (sum_f >= 1000){
+    cout << "Jump " << i << endl;
+    cout << "Frog Prime is at " <<sum_p<< " meters."<<endl;
+    cout << "Frogatron has cleared the well!"<<endl;
+    cout<<"***** END OF RACE *****"<<endl;
+    cout << "Frogatron wins in "<<i<<" jumps!";}       
+    else if (sum_p >= 1000){
+    cout << "Jump " << i << endl;
+    cout << "Frog Prime has cleared the well!"<<endl;
+    cout<< "Frogatron is at "<< sum_f <<" meters."<<endl;
+    cout<<"***** END OF RACE *****"<<endl;
+    cout << "Frog Prime wins in "<<i<<" jumps!";}
+        
+    
+    else{
+    cout << "Jump " << i << endl;
+    cout << "Frog Prime is at " <<sum_p<< " meters."<<endl;
+    cout<< "Frogatron is at "<< sum_f <<" meters."<<endl;}}}
+    
+}
+
+int main(int argc, char** argv) {
+  int prime_up, prime_down, tron_up, tron_down;
+  std::cin >> prime_up >> prime_down >> tron_up >> tron_down;
+  race(prime_up, prime_down, tron_up, tron_down);
+  return 0;
+}
+
+
+
+Q6
+
+
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+
+int main() 
+{
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    int base;
+    int exponent;
+    int sum = 1;
+    cin >> base;
+    cin >> exponent;
+    if (exponent == 0){
+        cout <<base<<" to the power of "<<exponent<<" is: "<<1;}
+    else if (exponent == 1){
+        cout <<base<<" to the power of "<<exponent<<" is: "<<base;}
+    else if (( base >= 1 && base <= 10) && ( exponent >= 0 && exponent <= 5)){
+        for (int i = 1; i < exponent+1 ; i++) {
+            sum = sum*base;}
+        
+    cout<<base<<" to the power of "<<exponent<<" is: "<<sum;}
+    else{
+        cout<<"Invalid input!";
+    }
+    return 0;
+}

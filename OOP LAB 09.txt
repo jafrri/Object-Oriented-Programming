@@ -1,0 +1,313 @@
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX OOP LAB 09 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX Q1 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#include<iostream>
+
+using namespace std;
+class Time{
+    private:
+    int hours;
+    int minutes;
+    int seconds;
+    
+    void adjust(){
+        if (seconds > 59){
+        int x1,y1;
+        x1 = seconds / 60;
+        minutes += x1;
+        y1 = seconds % 60;
+        seconds = y1;}
+        if (minutes > 59){
+        int x2,y2;
+        x2 = minutes / 60;
+        hours += x2;
+        y2 = minutes % 60;
+        minutes = y2;;
+        }
+        if (hours > 23){
+            hours = hours % 24;
+        }
+    }
+    
+    public:
+    Time(){
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
+    }
+    
+    Time(int a , int b ,int c){
+        hours = a;
+        minutes = b;
+        seconds = c;
+    }
+    
+    Time operator +(Time const& t1){
+        Time res;
+        res.seconds = seconds + t1.seconds;
+        res.minutes = minutes + t1.minutes;
+        res.hours = hours + t1.hours;
+        
+        
+    return(res);}
+    
+    void show(){
+        adjust();
+        if((hours <= 9)){
+            cout<<'0'<<hours<<":";
+        }
+        else{
+           cout<<hours<<":"; 
+        }
+        if(minutes <= 9){
+            cout<<'0'<<minutes<<":";
+        }
+        else{
+            cout<<minutes<<":";
+        }
+        if(seconds <= 9){
+            cout<<'0'<<seconds<<endl;
+        }
+        else{
+           cout<<seconds<<endl; 
+        }
+        
+    }
+    
+};
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    int hh, mm, ss;
+    cin>>hh>>mm>>ss;
+    Time t1(hh, mm, ss); //t1(hh, mm, ss)
+    cin>>hh>>mm>>ss;
+    Time t2(hh, mm, ss);
+    Time t3;
+    t3=t1+t2; //adding two times should produce a valid time, overflowed hours/minutes/seconds should be adjusted.
+    // e.g. adding 18:10:20 with 10:20:30 results in 4:30:50
+    
+    t1.show();
+    t2.show();
+    t3.show();
+    return 0;
+}
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q2 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+#include<iostream>
+
+using namespace std;
+
+class Complex{
+    private:
+    double real;
+    double imag;
+    
+    
+    public:
+    
+    Complex(){
+    real = 0;
+    imag = 0;
+    }
+    
+    Complex(double a,double b){
+        real = a;
+        imag = b;
+    }
+    
+    Complex operator+ (Complex const& c1){
+        Complex res;
+        res.real = real + c1.real;
+        res.imag = imag + c1.imag;
+    return(res);}
+    
+    Complex operator- (Complex const& c1){
+        Complex res;
+        res.real = real - c1.real;
+        res.imag = imag - c1.imag;
+    return(res);}
+    
+    Complex operator* (Complex const& c1){
+        Complex res;
+        res.real = (real*c1.real)-(imag*c1.imag);
+        res.imag = (real*c1.imag)+(c1.real*imag);
+    return(res);}
+    
+    Complex operator+ (double const& c1){
+        Complex res;
+        res.real = real + c1;
+        res.imag = imag ;
+    return(res);}
+    
+    Complex operator- (double const& c1){
+        Complex res;
+        res.real = real - c1;
+        res.imag = imag;
+    return(res);}
+    
+    Complex operator* (double const& c1){
+        Complex res;
+        res.real = real * c1;
+        res.imag = imag * c1;
+    return(res);} 
+    
+    
+    friend istream & operator >> (istream &in,  Complex &c)
+    {
+
+        in >> c.real;
+        in >> c.imag;
+        return in;
+    }
+    
+     friend ostream & operator << (ostream &out, const Complex &c){
+        if (c.imag>=0){
+        out << c.real<<"+";
+        out << c.imag<< "i";}
+        
+        else{
+        out << c.real;
+        out << c.imag<< "i";
+            
+        }
+    return out;
+     }
+    
+    
+    
+    
+      
+};
+
+
+
+int main(){
+   Complex c1, c2;
+    
+    cin>>c1; //extraction operator is overloaded
+    cin>>c2;
+
+    double d1;
+    cin>>d1;
+    
+    Complex result;
+    //showing the numbers:
+    cout<<"c1: "<< c1 <<endl; // insertion operator is overloaded
+    cout<<"c2: "<< c2 <<endl; 
+    cout<<"d1: "<< d1 <<endl;
+
+    // Check the opertions where both operands are complex
+    result = c1 + c2; 
+    cout<<"c1+c2: "<<result<<endl;
+    
+    
+    result = c1 - c2; 
+    cout<<"c1-c2: "<< result <<endl;
+    
+    result = c1 * c2; 
+    cout<<"c1*c2: "<< result <<endl;
+    
+    // Check the opertions where one operator is complex, other is double
+
+    result = c1 + d1; 
+    cout<<"c1+d1: "<< result <<endl;
+    
+    
+    result = c1 - d1; 
+    cout<<"c1-d1: "<< result <<endl;
+    
+    result = c1 * d1; 
+    cout<<"c1*d1: "<< result <<endl;
+}
+
+/*
+#include<iostream>
+
+using namespace std;
+
+struct Complex{
+    float real, imag;
+};
+
+Complex add(Complex c1, Complex c2){
+    return {c1.real+c2.real, c1.imag+c2.imag};
+}
+
+Complex subtract(Complex c1, Complex c2){
+    return {c1.real-c2.real, c1.imag-c2.imag};
+}
+
+Complex multiply(Complex c1, Complex c2){
+    return {c1.real*c2.real-c1.imag*c2.imag, c1.real*c2.imag+c1.imag*c2.real};
+}
+
+void show(Complex c){
+    if(c.imag>0)
+    cout<<c.real<<"+"<<c.imag<<"i";
+    else
+    {
+    cout<<c.real<<c.imag<<"i";
+    }    
+    cout<<endl;
+}
+
+
+int main(){
+    Complex c1, c2;
+    cin>>c1.real>>c1.imag;
+    cin>>c2.real>>c2.imag;
+
+    cout<<"Addition: "; show(add(c1,c2));
+    cout<<"Subtraction: "; show(subtract(c1,c2));
+    cout<<"Multiplication: "; show(multiply(c1,c2));
+}
+*/
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXX  Q3 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#include<iostream>
+
+using namespace std;
+
+struct Distance{
+    double feet, inches;
+};
+
+// Write the Area class here, and overload the double operator in it.
+
+class Area{
+    private:
+    Distance length;
+    Distance width;
+    
+    public:
+    Area(Distance L, Distance W){
+        length = L;
+        width = W;
+    }
+    
+    operator double(){
+        double len;
+        double wid;
+        len = length.feet + (length.inches/12);
+        wid = width.feet + (width.inches/12);
+        return(len*wid);
+    }
+};
+
+int main(){
+    double ft1, ft2, in1, in2;
+    cin>>ft1>>in1>>ft2>>in2;
+    Area area1 = {{ft1, in1}, {ft2,in2}};
+    
+    double decimalArea = area1; // overload the double operator to convert area object into decimal value.
+    cout<<"Area is: "<< decimalArea <<"sq feet"<<endl;
+
+}

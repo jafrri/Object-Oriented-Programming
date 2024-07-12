@@ -1,0 +1,230 @@
+XXXXXXXXXXXXXXXXXXX  OOP LAB 08 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXx Q1 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+#include <iostream>
+
+
+using namespace std;
+
+class IntArray1D{
+    
+  private:
+  int size;
+  int* aray;
+  public:
+    
+  IntArray1D(int n){
+    size = n;  
+    aray = new int[size];
+  }
+  
+  IntArray1D(const IntArray1D &newArr){
+      size = newArr.size;
+      aray = new int[size];
+      for (int i =0; i < size; i++) {
+          (aray[i]) = *((newArr.aray) + i);
+      }
+  }
+  
+
+  void input(){
+    int n;
+    for (int i = 0; i < size; i++) {
+        cin >> n;
+        (aray[i]) = n;
+    }
+  }  
+  
+  void show(){
+    for (int i = 0; i < size; i++) {
+        cout<<(aray[i])<<" ";
+    }
+  cout<< endl;}
+    
+  ~IntArray1D(){
+     delete [] aray;
+     aray = nullptr; 
+  }
+      
+
+};
+
+int main() {
+        
+    int n ;
+    cin >> n;
+
+    IntArray1D arr(n);
+    arr.input();
+    IntArray1D newArr(arr);
+    newArr.input();
+
+    arr.show();
+    newArr.show();
+
+
+    return 0;
+}
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q2 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#include <iostream>
+using namespace std;
+
+class publication{
+  private:
+  string title;
+  float price;
+  
+  public:
+  void getdata(){
+      getline(cin,title);
+      cin>> price;
+  }
+  
+  void putdata(){
+      cout << "Publication title: "<<title<<endl;
+      cout << "Publication price: "<<price<<endl;
+  }
+    
+};
+
+class book: private publication{
+    int page_count;
+    
+    public:
+    void getdata(){
+        publication::getdata();
+        cin >> page_count;
+    }
+    
+    void putdata(){
+        publication::putdata();
+        cout << "Book page count: "<<page_count<<endl;
+    }
+    
+};
+
+class tape: private publication{
+    float playing_time;
+    
+    public:
+    void getdata(){
+        publication::getdata();
+        cin >> playing_time;
+    
+    }
+    
+    void putdata(){
+        publication::putdata();
+        cout << "Tape's playing time: "<<playing_time<<endl;
+    }
+};
+    
+    
+    
+
+int main()
+{
+    book b;
+    tape t;
+    b.getdata();
+    cin.ignore();
+    t.getdata();
+    b.putdata();
+    t.putdata();
+}
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q3
+
+
+#include <iostream>
+using namespace std;
+
+class Payment{
+    private:
+    double amount;
+    
+    public:
+    
+    double get_amount(){
+       return(amount); 
+    }
+    
+    void set_amount(double s){
+        amount = s;
+    }
+        
+    void paymentDetails(){
+        
+    }
+};
+
+
+class CashPayment : private Payment{
+    
+    public:
+    
+    CashPayment(double n){
+        set_amount(n);
+        
+    }
+    
+    void paymentDetails(){
+        cout << "Amount of cash payment: $"<<get_amount()<<endl;
+    }
+};
+
+
+class CreditCardPayment: private Payment{
+    string name;
+    string date;
+    string card_no;
+    
+    public:
+    
+    CreditCardPayment(double a , string b , string c , string d){
+        set_amount(a);
+        name = b;
+        date = c;
+        card_no = d;
+    }
+    
+    void paymentDetails(){
+        
+        cout << "Amount of credit card payment: $"<<get_amount()<<endl;
+        cout << "Name on the credit card: "<< name<<endl;
+        cout<<"Expiration date: "<<date<<endl;
+        cout<<"Credit card number: "<<card_no<<endl;
+    }
+    
+};
+
+
+
+int main()
+{
+	CashPayment cp1(75.25);
+	CashPayment cp2(36.95);
+	CreditCardPayment ccp1(95.15, "Smith", "12/21/2009", "321654987");
+	CreditCardPayment ccp2(45.75, "James", "10/30/2008", "963852741");
+
+	cout << "Details of Cash #1..." << endl;
+	cp1.paymentDetails();
+	
+	cout << "\nDetails of Cash #2..." << endl;
+	cp2.paymentDetails();
+	
+	cout << "\nDetails of Credit Card #1..." << endl;
+	ccp1.paymentDetails();
+	
+	cout << "\nDetails of Credit Card #2..." << endl;
+	ccp2.paymentDetails();
+		
+	return 0;
+}

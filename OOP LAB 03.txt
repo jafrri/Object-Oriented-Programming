@@ -1,0 +1,236 @@
+Q1
+
+#include<iostream>
+using namespace std;
+
+void print_vector(int vec[] , int size){
+    for (int i = 0; i < size ; i++) {
+    cout << vec[i] << " ";
+    }
+}
+void input_vector( int size, int num[]){
+    int inp;
+     for (int i =0; i < size ; i++) {
+     cin >> inp;
+     num[i] = inp;  
+     }
+        
+}
+
+
+
+void add_vectors(int size, int vec1[],int vec2[], int res[]){
+    for (int i = 0; i < size; i++) {
+    res[i] = vec1[i] + vec2[i];}
+    }
+    
+void subtract_vectors(int size, int vec1[],int vec2[], int res[]){
+    for (int i = 0; i < size; i++) {
+    res[i] = vec1[i] - vec2[i];
+    }  
+}
+void compare_vectors( int vec1[],int vec2[]){
+    int check = 0;
+    for (int i = 0; i < 3; i++) {
+    if (vec1[i] != vec2[i]){
+        check = 0;
+    }
+    else if(vec1[3] == vec2[3]){
+        check = 1;}
+    
+    }      
+if(check == 1){
+    cout << "EQUAL";
+}
+else{
+    cout << "UNEQUAL";
+}
+}
+   
+int main(){
+    int size;
+    cin >> size;
+    int vec1[size],vec2[size],res[size];
+    input_vector(size,vec1);
+    input_vector(size,vec2);
+    char sign;
+    cin >> sign;
+    if(sign == '+'){
+        add_vectors(size , vec1, vec2, res);
+        print_vector(res,size );
+    }
+    else if(sign == '-'){
+        subtract_vectors(size , vec1, vec2, res);
+        print_vector(res,size );}
+    
+    else{
+        compare_vectors( vec1, vec2);}
+        
+}
+
+
+
+Q2
+
+
+
+#include<iostream>
+using namespace std;
+
+void print_matrix(int vec[] , int size, int row, int column){
+    int count = 0;
+    for (int i = 0; i < size ; i++) {
+    count = count + 1;
+    if (count == column){
+      cout << vec[i] << endl  ;
+    }   
+    else{
+    cout << vec[i] << " ";}
+    }
+}
+void input_matrix( int size, int num[]){
+    int inp;
+     for (int i =0; i < size ; i++) {
+     cin >> inp;
+     num[i] = inp;  
+     }
+        
+}
+
+
+
+void add_matrices(int size, int vec1[],int vec2[], int res[]){
+    for (int i = 0; i < size; i++) {
+    res[i] = vec1[i] + vec2[i];}
+    }
+    
+void subtract_matrices(int size, int vec1[],int vec2[], int res[]){
+    for (int i = 0; i < size; i++) {
+    res[i] = vec1[i] - vec2[i];
+    }  
+}
+
+   
+int main(){
+    int row;
+    cin >> row;
+    int column;
+    cin >> column;
+    int vec1[row*column],vec2[row*column],res[row*column];
+    input_matrix(row*column,vec1);
+    input_matrix(row*column,vec2);
+    char sign;
+    cin >> sign;
+    if(sign == '+'){
+        add_matrices(row*column , vec1, vec2, res);
+        print_matrix(res,row*column,row,column );
+    }
+    else if(sign == '-'){
+        subtract_matrices(row*column , vec1, vec2, res);
+        print_matrix(res,row*column,row,column );}
+
+        
+}
+
+
+
+Q3
+
+
+
+
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+/* Enter your code here. Read input from STDIN. Print output to STDOUT */
+using namespace std;
+void input_years(int yrs[],int num_yrs){
+    int inp;
+   
+   bool check = true;
+   bool checko = true;
+   int i = 0;
+   while (check ) {
+    cin >> inp;
+    if ( i == num_yrs){
+        check =false;
+    }
+    else if (inp >= 0 && inp <= 9999){
+        yrs[i] = inp;
+        i = i + 1;
+         
+   }
+    else{
+       cout << "Year can be between 0 and 9999! Try Again!"<<endl;
+   }
+   }
+
+}
+
+
+void print_yrs_array(int yrs[], int num_yrs){
+    for (int i=0; i < num_yrs; i++) {
+    if(i == num_yrs-1){
+        cout << yrs[i]<<endl;
+        
+    }
+    else{
+        cout << yrs[i] << ", ";
+    }
+    }
+}
+
+void chronological_order(int yrs[] , int num_yrs){
+    int swap ;
+    // int swap2 ;
+    for (int i = 0; i < num_yrs ; i++) {
+        for (int j = 0; j < (num_yrs-i-1); j++) {
+            if (yrs[j] > yrs[j+1]){
+                swap = yrs[j+1];
+                yrs[j+1] = yrs[j];
+                yrs[j] = swap;
+    }
+    }
+    }
+}
+
+int main(){
+    int year;
+    bool chec = true;
+    while( chec == true){
+        cin >> year;
+        if(year < 2){
+           cout << "Need at least 2 years to sort! Try Again!"<<endl ;
+        }
+        else{
+            chec = false;
+        }
+    }
+    int yrs[year];
+    input_years(yrs,year);
+    cout << "The initial array is: ";
+    print_yrs_array(yrs,year);
+    chronological_order(yrs,year);
+    cout << "The sorted array is: ";
+    print_yrs_array(yrs,year);
+    
+}

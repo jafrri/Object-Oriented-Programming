@@ -1,0 +1,178 @@
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q1  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#include<iostream>
+using namespace std;
+
+int main(){
+    double itemp;
+    cin>> itemp;
+    double ctemp;
+    ctemp = (itemp - 32) / 1.8;
+    double otemp;
+    otemp = ctemp - 37;
+    cout<<itemp << " F is " << otemp << " C above normal body temperature.";
+    return 0;
+}
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q2  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#include<iostream>
+using namespace std;
+
+int main(){
+    double speedmile;
+    cin>> speedmile;
+    double speedkm;
+    speedkm = speedmile * 1.6;
+    cout << speedmile << " mi/h are equivalent to " << speedkm << " km/h.";
+    return 0;
+}
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q3  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#include<iostream>
+using namespace std;
+
+int main(){
+    double meter,inch;
+    cin >> meter;
+    inch = meter / 0.0254;
+    double mod, rem;
+    mod = int(inch / 12);
+    rem = int(inch - (mod*12));
+    cout << meter << " m is approximately equivalent to "<< mod << " ft and "<< rem<< " inches!";
+    return 0;
+    
+    
+}
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q4  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{ 
+    cout << "The size of char is: " << sizeof(char) << " bytes" << endl;
+    cout << "The size of int is: " << sizeof(int) << " bytes" << endl;
+    cout << "The size of float is: " << sizeof(float) << " bytes" << endl;
+    cout << "The size of double is: " << sizeof(double) << " bytes" << endl;
+    cout << "The size of long is: " << sizeof(long) << " bytes" << endl;
+    cout << "The size of short is: " << sizeof(short) << " bytes" << endl;
+    cout << "The size of bool is: " << sizeof(bool)<< " bytes" << endl;
+    return 0;
+}
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q5  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+include<iostream>
+using namespace std;
+
+
+int main()
+{
+    int value1, value2;
+    cin>>value1;
+    cin>>value2;
+    
+    // Write logic to swap value1 and value2
+    int swap1,swap2;
+    swap1 = value1;
+    swap2 = value2;
+    value2 = swap1;
+    value1 = swap2;
+    cout<<value1<<" "<<value2;
+    return(0);
+}
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q6  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+using namespace std;
+
+int main() 
+{
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    int dividend, divisor;
+    cin >> dividend;
+    cin >> divisor;
+    double mod, rem;
+    mod = int(dividend / divisor);
+    rem = dividend - (divisor * mod);
+    cout << mod << " " << rem;
+    return 0;
+}
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  Q7  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#include <iostream>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int amount;
+    cin >> amount;
+    int m5000,m1000,m500,m100,m50,m20,m10,m5,m2,m1;
+    int r5000,r1000,r500,r100,r50,r20,r10,r5,r2,r1;
+    m5000 = int(amount / 5000);
+    r5000 = amount % 5000;
+    m1000 = int(r5000 / 1000);
+    r1000 = r5000  % 1000;
+    m500 = int(r1000 / 500);
+    r500 = r1000 % 500;
+    m100 = int(r500 / 100);
+    r100 = r500 % 100;
+    m50 = int(r100 / 50);
+    r50 = r100 % 50;
+    m20 = int(r50 / 20);
+    r20 = r50 % 20;
+    m10 = int(r20 / 10);
+    r10 = r20 % 10;
+    m5 = int(r10 / 5);
+    r5 = r10 % 5;
+    m2 = int(r5 / 2);
+    r2 = r5 % 2;
+    m1 = int(r2 / 1);
+    r1 = r2 % 1;
+    
+    cout << "Total number of notes:" << endl;
+    cout << "5000 : " << m5000 << endl;
+    cout << "1000 : " << m1000 << endl;
+    cout << "500 : " << m500 << endl;
+    cout << "100 : " << m100 << endl;
+    cout << "50 : " << m50 << endl;
+    cout << "20 : " << m20 << endl;
+    cout << "10 : " << m10 << endl;
+    cout << "5 : " << m5 << endl;
+    cout << "2 : " << m2 << endl;
+    cout << "1 : " << m1 << endl;
+    
+  
+    return 0;
+}
+
+

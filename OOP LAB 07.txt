@@ -1,0 +1,339 @@
+XXXXXXXXXXXXXXXXXXXXXXXXXX OOP LAB 07 XXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXX Q1 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+#include<iostream>
+using namespace std;
+class Time24{
+  
+  private:
+    int hours;
+    int minutes;
+    int seconds;
+    
+    
+  void adjust(){
+      int mod1,mod2;
+      int rem1,rem2;
+      if (seconds >= 60){
+          mod1 = int(seconds/60);
+          rem1 = seconds%60;
+          minutes = minutes + mod1;
+          seconds = seconds - (mod1*60) ;
+          
+      }
+      
+      if (minutes >= 60){
+        mod2 = int(minutes/60);
+        rem2 = minutes%60;
+        hours = hours + mod2;
+        minutes = minutes - (mod2*60) ;    
+          
+      }
+      
+      if(hours > 24){
+          hours = hours%24;
+      }
+      
+  }
+  public:
+    Time24(int h, int m, int s){
+        
+        hours = h;
+        minutes = m;
+        seconds = s;
+        adjust();
+    }
+    
+    Time24(int h, int m, int s, char ap){
+        if(ap == 'a'){
+            
+            hours = h;
+            minutes = m;
+            seconds = s;
+            adjust();
+        }
+        else{
+            hours = h + 12;
+            minutes = m;
+            seconds = s;
+            adjust();
+        }
+    }
+    
+    void add(Time24 time){
+        
+         hours = hours + time.hours;
+         minutes = minutes + time.minutes;
+         seconds = seconds + time.seconds;
+         adjust();
+        
+    }
+    
+    void show(){
+        if((hours <= 9)){
+            cout<<'0'<<hours<<":";
+        }
+        else{
+           cout<<hours<<":"; 
+        }
+        if(minutes <= 9){
+            cout<<'0'<<minutes<<":";
+        }
+        else{
+            cout<<minutes<<":";
+        }
+        if(seconds <= 9){
+            cout<<'0'<<seconds<<endl;
+        }
+        else{
+           cout<<seconds<<endl; 
+        }
+        
+    }
+    
+};
+
+
+using namespace std;
+int main(){
+    int hours1, minutes1, seconds1;
+    cin>>hours1>>minutes1>>seconds1;
+    Time24 t1(hours1, minutes1, seconds1);
+
+
+    int hours2, minutes2, seconds2;
+    char period;
+    cin>>hours2>>minutes2>>seconds2>>period;
+    Time24 t2 = {hours2, minutes2, seconds2, period};
+
+    cout<<"t1: "; t1.show();
+    cout<<"t2: "; t2.show();
+
+    t1.add(t2);// result of addition is stored in t1
+    cout<<"t1+t2: "; t1.show();
+}
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXX   Q2    XXXXXXXXXXXXXXXXXXXXX
+
+
+
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+using namespace std;
+
+class TollBooth{
+  
+  private:
+    unsigned int no_cars;
+    unsigned int money_collect;
+    
+  public:
+  
+    TollBooth(){
+      no_cars = 0;
+      money_collect = 0;
+      
+  }
+  
+    void payingCar(){
+      
+      no_cars = no_cars + 1;
+      money_collect = money_collect + 50;
+  }
+  
+    void nopayCar(){
+     
+     no_cars = no_cars + 1;
+  }
+  
+  void display(){
+      cout<<"Total cars passed: "<< no_cars<<endl;
+      cout<<"Total toll collected: Rs. "<< money_collect<<endl;
+  }
+    
+};
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    char n;
+    TollBooth toll;
+    cin >> n;
+    while(n != 'q'){
+        if (n == 'p'){
+            toll.payingCar();
+            
+        }
+        else{
+            toll.nopayCar();
+        }
+    cin >> n;    
+    }
+    toll.display();
+    return 0;
+}
+
+
+
+XXXXXXXXXXXXXXXXXXXXXX  Q3 XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+#include <map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <ctime>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <string>
+#include <bitset>
+#include <cstdio>
+#include <limits>
+#include <vector>
+#include <climits>
+#include <cstring>
+#include <cstdlib>
+#include <fstream>
+#include <numeric>
+#include <sstream>
+#include <iostream>
+#include <algorithm>
+#include <unordered_map>
+
+
+using namespace std;
+
+//1. Define the Student class here
+
+class Student{
+  private:
+    int ID;
+    string f_name;
+    string l_name;
+    float exam_score;
+      
+  public:
+    
+    Student(){
+        ID = 0;
+        f_name = "";
+        l_name = "";
+        exam_score = 0.0;
+    }
+    
+    Student(int a , string f , string l , float ex){
+        ID = a;
+        f_name = f;
+        l_name = l;
+        exam_score = ex;
+    }
+    
+    float getexam_score(){
+        return(exam_score);
+    }
+    
+    void show(){
+        cout << ID<<endl;
+        cout << f_name<<endl;
+        cout << l_name<<endl;
+        cout << exam_score<<endl;
+    }
+};
+
+
+//2. Define the MinMax function here
+
+Student* MinStudent(Student* arra, int n){
+    float mi;
+    
+    mi = (*(arra+0)).getexam_score();
+    int j;
+    for (int i = 1; i < n; i++){
+        if((*(arra+i)).getexam_score() < mi){
+            mi = (*(arra+i)).getexam_score();
+            j = i;}
+    }
+return((arra+j));}
+
+
+Student* MaxStudent(Student* arra, int n){
+    float ma;
+    
+    ma = (*(arra+0)).getexam_score();
+    int k;
+    for (int i = 1; i < n; i++){
+        if((*(arra+i)).getexam_score() > ma){
+            ma = (*(arra+i)).getexam_score();
+            k = i;}
+    }
+return((arra+k));}
+
+//3. Do the necessary steps in the main function
+int main() {
+    //1. create Student array of size n dynamically
+        int n;
+        cin >> n;
+        Student* arr = new Student[n];
+    
+    
+    //2. Read the Student information into the Student array
+        int id;
+        string fnam,lnam;
+        float sco;
+        for (int i = 0; i < n; i++) {
+            cin >> id ;
+            cin.ignore();
+            getline(cin, fnam); 
+            getline(cin, lnam);
+            cin >> sco;
+            Student stud_obj(id,fnam,lnam,sco);
+            *(arr + i) = stud_obj;
+        }
+    
+    
+    //3. Pass the student array to the MinStudent function and store returned value in pointer of type Student
+        Student* min = MinStudent(arr , n);
+    
+    //4. Pass the student array to the MaxStudent function and store returned value in pointer of type Student
+        Student* max = MaxStudent(arr, n);
+    
+    cout<<"Student with Minimum score:"<<endl;
+    //5. Call Student's show() function to print the student information of the object returned by MinStudent function.
+        Student minn = *min;
+        minn.show();
+        cout<<endl;
+    cout<<"Student with Maximum score:"<<endl;
+    //6. Call Student's show() function to print the student information of the object returned by MaxStudent function.
+        Student maxx = *max;
+        maxx.show();
+    
+    //7. Delete the array
+    
+    delete [] arr;
+    
+    
+    return 0;
+}
